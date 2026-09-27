@@ -1,0 +1,143 @@
+# -------------------------------------------------------
+# FIN-GLASSBOX  –  .gitignore
+# sec_edgar/filings/
+# -------------------------------------------------------
+
+
+# data/
+# ── Project-specific: Filings Data ────────────────
+processed/*
+manifests/*
+indexes/
+raw/**/
+raw/**temp**
+raw/**ignore**
+
+# ── Project-specific: Output Embeddings ────────────────
+outputs/embeddings/FinBERT/*embeddings768.npy
+outputs/embeddings/FinBERT/*pca_768_to_256.pkl
+# outputs/embeddings/FinBERT/*manifest768.json
+# outputs/embeddings/FinBERT/*pca_manifest.json
+# outputs/embeddings/analysts/**/*
+outputs/embeddings/analysts/**/*.npy
+outputs/embeddings/**/*.npy
+outputs/embeddings/TemporalEncoder/*.csv
+
+# ── Project-specific: Output Models ────────────────
+!outputs/models/**/**/latest_checkpoint.pt
+!outputs/models/**/**/final_model.pt
+outputs/models/**/**/best_checkpoint.pt
+outputs/models/**/**/epoch_*.pt
+*latest_model.pt
+outputs/models/**/chunk*/model_unfreezed/*
+outputs/models/**/chunk*/model_freezed/*
+outputs/models/**/chunk*/best_model.pt
+outputs/models/**/chunk*/*.pkl
+outputs/models/**/chunk*/*.npz
+!outputs/models/QuantitativeAnalyst/chunk3/scaler.npz
+!outputs/models/FusionEngine/chunk3/scaler.npz
+training_history.csv
+outputs/results/analysts/**/xai/*.npy
+outputs/results/**/xai/*.npy
+
+# ── Project-specific: misc tool artefacts ────────────────
+.spyproject/
+.streamlit/
+ignore/
+*ignore*.*
+final/
+transfer_artifacts/
+# ── OS & editor noise ───────────────────────────────────
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.vsix
+*.code-workspace
+# ── Python byte-compiled / optimised ────────────────────
+__pycache__/
+*.whl
+*.egg-info/
+*.egg
+None/
+*.py[codz]
+*$py.class
+*.so
+cython_debug/
+# ── Virtual environments & Secrets & config ─────────────────────────────────
+.env
+*.env
+# Keep .toml tracked (pyproject.toml etc.) – add specific
+# secret toml names below if needed:
+# secrets.toml
+.Python
+.envrc
+.venv
+# env/
+*env*/
+ENV/
+# env.bak/
+# venv.bak/
+# venv_windows/
+.pixi
+__pypackages__/
+.pdm-python
+.pdm-build/
+# ── Distribution / packaging ─────────────────────────────
+build/
+dist/
+develop-eggs/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+.installed.cfg
+*.egg
+MANIFEST
+*.spec
+*.manifest
+.python-version
+pip-log.txt
+pip-delete-this-directory.txt
+
+# ── Testing & coverage ───────────────────────────────────
+htmlcov/
+.tox/
+.nox/
+.coverage
+.coverage.*
+nosetests.xml
+coverage.xml
+*.cover
+*.py.cover
+.hypothesis/
+.pytest_cache/
+cover/
+
+# ── Type checkers & linters ──────────────────────────────
+.mypy_cache/
+.dmypy.json
+dmypy.json
+.pyre/
+.pytype/
+.ruff_cache/
+.pypirc
+# ── Misc ─────────────────────────────────────────────────
+*.tmp
+*.log
+*.zip
+*.rdb
+*.aof
+*.pid
+*.mo
+*.pot
+*.pyc
+*.pyo
+*.pyd

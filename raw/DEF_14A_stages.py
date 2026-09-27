@@ -1,0 +1,64 @@
+# DEF_14A
+'''
+    SEC-DOCUMENT:""
+    SEC-HEADER
+    ACCESSION NUMBER:
+    CONFORMED SUBMISSION TYPE:
+    PUBLIC DOCUMENT COUNT
+    CONFORMED PERIOD OF REPORT
+    FILED AS OF DATE
+    FILER:
+        COMPANY DATA:	
+            COMPANY CONFORMED NAME:			Morningstar, Inc.
+            CENTRAL INDEX KEY:			0001289419
+            STANDARD INDUSTRIAL CLASSIFICATION:	INVESTMENT ADVICE [6282]
+            IRS NUMBER:				363297908
+            STATE OF INCORPORATION:			IL
+            FISCAL YEAR END:			1231
+        FILING VALUES:
+            FORM TYPE:		DEF 14A
+            SEC ACT:		1934 Act
+            SEC FILE NUMBER:	000-51280
+            FILM NUMBER:		24799174
+        BUSINESS ADDRESS:	
+            STREET 1:		22 WEST WASHINGTON STREET
+            STREET 2:		22 WEST WASHINGTON STREET
+            CITY:			CHICAGO
+            STATE:			IL
+            ZIP:			60602
+            BUSINESS PHONE:		(312) 696-6000
+        MAIL ADDRESS:	
+            STREET 1:		22 WEST WASHINGTON STREET
+            STREET 2:		22 WEST WASHINGTON STREET
+            CITY:			CHICAGO
+            STATE:			IL
+            ZIP:			60602
+
+        FORMER COMPANIES:[] // as it can be multiple here, it can also be null
+        FORMER COMPANY:	
+            FORMER CONFORMED NAME:	PUTNAM HIGH INCOME BOND FUND
+            DATE OF NAME CHANGE:	20030408
+
+        FORMER COMPANY:	
+            FORMER CONFORMED NAME:	PUTNAM HIGH BOND FUND
+            DATE OF NAME CHANGE:	20021107
+
+        FORMER COMPANY:	
+            FORMER CONFORMED NAME:	PUTNAM HIGH INCOME CONVERTIBLE & BOND FUND
+            DATE OF NAME CHANGE:	19920703
+
+DOCUMENT: there can be multiple docs
+TYPE :
+DOCUMENT-ID/SEQUENCE : 
+FILENAME :
+DESCRIPTION : can be null
+
+
+
+
+
+
+take care of the fact that some docs have tabs=2 spaces
+ and some have 4 spaces
+
+'''
