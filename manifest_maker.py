@@ -13,8 +13,7 @@ from typing import Iterable, Iterator
 
 import requests
 
-# DATA_ROOT = Path(os.getenv("secDataPathGlobal", ".")) 
-# secDataPathGlobal = "data/sec_edgar"
+# DATA_ROOT = Path(os.getenv("secDataPathGlobal", ""data/sec_edgar")) 
 DATA_ROOT = Path(".") 
 RAW_DIR = DATA_ROOT / "raw"
 LOG_DIR = DATA_ROOT / "logs"
