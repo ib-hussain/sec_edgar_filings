@@ -9,6 +9,7 @@
 processed/*
 manifests/*
 indexes/
+api/
 raw/**/
 raw/**temp**
 raw/**ignore**

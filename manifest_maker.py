@@ -8,22 +8,18 @@ import dotenv
 dotenv.load_dotenv()  # Load .env if present
 import re
 import time
-import zipfile
 from pathlib import Path
 from typing import Iterable, Iterator
 
 import requests
 
-
-# DATA_ROOT = Path(os.getenv("dataPathGlobal", "data")) / "sec_edgar"
+# DATA_ROOT = Path(os.getenv("secDataPathGlobal", ".")) 
+# secDataPathGlobal = "data/sec_edgar"
 DATA_ROOT = Path(".") 
 RAW_DIR = DATA_ROOT / "raw"
-PROCESSED_DIR = DATA_ROOT / "processed"
 LOG_DIR = DATA_ROOT / "logs"
-INDEX_DIR = DATA_ROOT / "indexes"
+INDEX_DIR = RAW_DIR / "indexes"
 FILING_DIR = RAW_DIR 
-API_DIR = DATA_ROOT / "api"
-
 MANIFEST_DIR = DATA_ROOT / "manifests"
 
 SEC_USER_AGENT = os.getenv("SEC_USER_AGENT", "IbrahimHussain ibrahimbeaconarion@gmail.com").strip()
@@ -55,7 +51,7 @@ def require_user_agent() -> None:
         )
 
 def ensure_dirs() -> None:
-    for p in [RAW_DIR, PROCESSED_DIR, LOG_DIR, INDEX_DIR, API_DIR, FILING_DIR, MANIFEST_DIR]:
+    for p in [RAW_DIR, LOG_DIR, INDEX_DIR, FILING_DIR, MANIFEST_DIR]:
         p.mkdir(parents=True, exist_ok=True)
 
 def log(msg: str) -> None:  
@@ -227,61 +223,6 @@ def build_manifest(client: SECClient, start_year: int, end_year: int) -> Path:
     return manifest_path
 
 
-def download_filings_from_manifest(client: SECClient, manifest_path: Path) -> None:
-    if not manifest_path.exists():
-        raise FileNotFoundError(f"Manifest not found: {manifest_path}")
-
-    progress_path = LOG_DIR / f"{manifest_path.stem}__download_progress.csv"
-    progress_fields = ["filing_url", "output_path", "status", "error"]
-
-    total = 0
-    downloaded = 0
-    skipped = 0
-    failed = 0
-
-    with manifest_path.open("r", newline="", encoding="utf-8") as f:
-        reader = csv.DictReader(f)
-
-        for row in reader:
-            total += 1
-            url = row["filing_url"]
-            dest = Path(row["output_path"])
-
-            if dest.exists():
-                skipped += 1
-                continue
-
-            try:
-                client.download_to_file(url, dest)
-                downloaded += 1
-                append_csv_row(progress_path, {
-                    "filing_url": url,
-                    "output_path": str(dest),
-                    "status": "downloaded",
-                    "error": "",
-                }, progress_fields)
-            except Exception as exc:  # noqa: BLE001
-                failed += 1
-                append_csv_row(progress_path, {
-                    "filing_url": url,
-                    "output_path": str(dest),
-                    "status": "failed",
-                    "error": str(exc),
-                }, progress_fields)
-                log(f"[filings][failed] {url} -> {exc}")
-
-            if total % 1000 == 0:
-                log(
-                    f"[filings] processed={total:,} downloaded={downloaded:,} "
-                    f"skipped={skipped:,} failed={failed:,}"
-                )
-
-    log(
-        f"[filings] done. processed={total:,} downloaded={downloaded:,} "
-        f"skipped={skipped:,} failed={failed:,}"
-    )
-
-
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(
         description="SEC EDGAR raw downloader: bulk metadata, manifest building, and raw filing text download."
@@ -292,12 +233,7 @@ def parse_args() -> argparse.Namespace:
     manifest.add_argument("--start-year", type=int, default=2000)
     manifest.add_argument("--end-year", type=int, default=2026)
 
-    filings = sub.add_parser("filings", help="Download raw filing .txt files from a manifest")
-    filings.add_argument("--manifest", required=True, help="Path to manifest CSV")
 
-    all_in_one = sub.add_parser("all", help="Run bulk -> manifest -> filings")
-    all_in_one.add_argument("--start-year", type=int, default=2000)
-    all_in_one.add_argument("--end-year", type=int, default=2026)
 
     return parser.parse_args()
 
@@ -308,11 +244,8 @@ def main() -> None:
     args = parse_args()
     client = SECClient()
 
-    if args.command == "manifest":    build_manifest(client, args.start_year, args.end_year)
-    elif args.command == "filings":   download_filings_from_manifest(client, Path(args.manifest))
-    elif args.command == "all":
-        manifest_path = build_manifest(client, args.start_year, args.end_year)
-        download_filings_from_manifest(client, manifest_path)
+    if args.command == "manifest":    
+        build_manifest(client, args.start_year, args.end_year)
     else:       
         raise SystemExit(f"Unknown command: {args.command}")
 
@@ -321,6 +254,4 @@ if __name__ == "__main__":
     main()
 
 # Example Usage:
-# python data/sec_data_Fulldownloader.py manifest --start-year 2000 --end-year 2026
-# python data/sec_data_Fulldownloader.py filings --manifest data/sec_edgar/processed/filings_manifest_2000_2024.csv
-# python data/sec_data_Fulldownloader.py all --start-year 2000 --end-year 2024
+# python manifest_maker.py manifest --start-year 2000 --end-year 2026
