@@ -10,6 +10,7 @@ processed/*
 manifests/*
 indexes/
 api/
+logs/
 raw/**/
 raw/**temp**
 raw/**ignore**

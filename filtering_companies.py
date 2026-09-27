@@ -12,7 +12,6 @@ dotenv.load_dotenv()
 
 
 # PATHS / CONFIG
-dataPath = Path(os.getenv("dataPathGlobal", "data"))
 MANIFEST_DIR = Path(os.getenv("MANIFEST_DIR", "manifests"))
 
 DEFAULT_INPUT_MANIFEST = MANIFEST_DIR / "filings_manifest_2000_2026.csv"
