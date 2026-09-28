@@ -6,7 +6,7 @@
 
 # data/
 # ── Project-specific: Filings Data ────────────────
-processed/*
+processed/
 manifests/*
 indexes/
 api/
@@ -14,8 +14,12 @@ logs/
 raw/**/
 raw/**temp**
 raw/**ignore**
+
+
 **temp**
 archive/processed/
+tests/
+*.db
 
 # ── Project-specific: Output Embeddings ────────────────
 outputs/embeddings/FinBERT/*embeddings768.npy
@@ -56,6 +60,12 @@ transfer_artifacts/
 Thumbs.db
 .idea/
 .vscode/
+__pycache__/
+*.py[cod]
+*.db
+*.db-wal
+*.db-shm
+*.part
 *.vsix
 *.code-workspace
 # ── Python byte-compiled / optimised ────────────────────
