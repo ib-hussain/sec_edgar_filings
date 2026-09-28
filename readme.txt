@@ -10,3 +10,9 @@ python downloader.3.py --workers 8 --max-pending-futures 256 --min-free-gb 12 --
 filter_download.4.py
 python filter_download.4.py
 
+DEFAULT_FORM_WEIGHTS = {
+    "8-K": 0.50,
+    "10-Q": 0.27,
+    "10-K": 0.09,
+    "DEF 14A": 0.14,
+}
