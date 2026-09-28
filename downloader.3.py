@@ -463,6 +463,6 @@ if __name__ == "__main__":
     main()
 
 # Usage:
-#   python downloader.py
-#   python downloader.py --workers 8 --max-pending-futures 256 --min-free-gb 12
-#   python downloader.py --workers 8 --max-pending-futures 256 --min-free-gb 12 --max-retries 8 --force
+#   python downloader.3.py
+#   python downloader.3.py --workers 8 --max-pending-futures 256 --min-free-gb 12
+#   python downloader.3.py --workers 8 --max-pending-futures 256 --min-free-gb 12 --max-retries 8 --force

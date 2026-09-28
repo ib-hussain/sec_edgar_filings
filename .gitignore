@@ -15,6 +15,7 @@ raw/**/
 raw/**temp**
 raw/**ignore**
 **temp**
+archive/processed/
 
 # ── Project-specific: Output Embeddings ────────────────
 outputs/embeddings/FinBERT/*embeddings768.npy

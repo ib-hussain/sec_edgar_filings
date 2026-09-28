@@ -253,4 +253,4 @@ if __name__ == "__main__":
     main()
 
 # Example Usage:
-# python manifest_maker.py manifest --start-year 2000 --end-year 2026
+# python manifest_maker.1.py manifest --start-year 2000 --end-year 2026

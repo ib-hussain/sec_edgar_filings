@@ -259,6 +259,6 @@ if __name__ == "__main__":
 
 
 # Usage:
-#   python filter_download.py                  # report only (safe default)
-#   python filter_download.py --delete          # delete undesired CIK files
-#   python filter_download.py --cik-list main_tickers.csv --raw-dir raw
+#   python filter_download.4.py                  # report only (safe default)
+#   python filter_download.4.py --delete          # delete undesired CIK files
+#   python filter_download.4.py --cik-list main_tickers.csv --raw-dir raw

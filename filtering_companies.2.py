@@ -154,3 +154,5 @@ def main() -> None:
 if __name__ == "__main__":
 	main()
 
+# Usage:
+# python filtering_companies.2.py --input data/sec_edgar/manifests/filings_manifest_2000_2026.csv  --output  data/sec_edgar/manifests/filtered_manifest_2000_2026.csv --tickers data/main_tickers.csv
